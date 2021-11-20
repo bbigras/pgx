@@ -48,11 +48,11 @@
         });
 
       overlay = final: prev: {
-        "${cargoToml.package.name}" = final.callPackage ./. { inherit naersk; };
-        "${cargoToml.package.name}_10" = final.callPackage ./. { pgxPostgresVersion = 10; inherit naersk; };
-        "${cargoToml.package.name}_11" = final.callPackage ./. { pgxPostgresVersion = 11; inherit naersk; };
-        "${cargoToml.package.name}_12" = final.callPackage ./. { pgxPostgresVersion = 12; inherit naersk; };
-        "${cargoToml.package.name}_13" = final.callPackage ./. { pgxPostgresVersion = 13; inherit naersk; };
+        "${cargoToml.package.name}" = final.callPackage ./. { llvmPackages = prev.llvmPackages_latest; inherit naersk; };
+        "${cargoToml.package.name}_10" = final.callPackage ./. { pgxPostgresVersion = 10; llvmPackages = prev.llvmPackages_latest; inherit naersk; };
+        "${cargoToml.package.name}_11" = final.callPackage ./. { pgxPostgresVersion = 11; llvmPackages = prev.llvmPackages_latest; inherit naersk; };
+        "${cargoToml.package.name}_12" = final.callPackage ./. { pgxPostgresVersion = 12; llvmPackages = prev.llvmPackages_latest; inherit naersk; };
+        "${cargoToml.package.name}_13" = final.callPackage ./. { pgxPostgresVersion = 13; llvmPackages = prev.llvmPackages_latest; inherit naersk; };
       };
 
       nixosModule = { config, pkgs, lib, ... }:

@@ -30,7 +30,7 @@
         });
 
       overlay = final: prev: {
-        cargo-pgx = final.callPackage ./cargo-pgx { inherit naersk; };
+        cargo-pgx = final.callPackage ./cargo-pgx { llvmPackages = prev.llvmPackages_latest; inherit naersk; };
       };
 
       devShell = forAllSystems (system:
@@ -53,10 +53,10 @@
             cargo-pgx
             postgresql
           ];
-          LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+          LIBCLANG_PATH = "${pkgs.llvmPackages_latest.libclang.lib}/lib";
           PGX_PG_SYS_SKIP_BINDING_REWRITE = "1";
           BINDGEN_EXTRA_CLANG_ARGS = [
-            ''-I"${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.llvmPackages.libclang.version}/include"''
+            ''-I"${pkgs.llvmPackages_latest.libclang.lib}/lib/clang/${pkgs.llvmPackages_latest.libclang.version}/include"''
             "-I ${pkgs.glibc.dev}/include"
           ];
         });
