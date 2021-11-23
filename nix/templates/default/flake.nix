@@ -4,8 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     naersk.url = "github:nix-community/naersk";
-    pgx.url = "github:zombodb/pgx/develop";
+    naersk.inputs.nixpkgs.follows = "nixpkgs";
+    pgx.url = "github:zombodb/bbigras/3e1a33e0851de1edaf07aba145180dfa5266a71e";
     pgx.inputs.nixpkgs.follows = "nixpkgs";
+    pgx.inputs.naersk.follows = "naersk";
   };
 
   outputs = { self, nixpkgs, pgx, naersk }:
