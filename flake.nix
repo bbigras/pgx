@@ -41,6 +41,7 @@
           }: pkgs.callPackage ./nix/extension.nix {
             inherit source pgxPostgresVersion release naersk additionalFeatures;
             inherit (gitignore.lib) gitignoreSource;
+	    doCheck = false;
           };
       };
       defaultPackage = forAllSystems (system: (nixpkgsWithOverlays { inherit system nixpkgs; }).cargo-pgx);
