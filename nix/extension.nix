@@ -129,8 +129,7 @@ naersk.lib."${targetPlatform.system}".buildPackage rec {
   '';
   preFixup = ''
     rm -r $out/.pgx
-    #mv $out/lib/* $out/share/postgresql/extension/
-    rm -r $out/lib $out/bin
+    rm -r $out/bin
   '';
   PGX_PG_SYS_SKIP_BINDING_REWRITE = "1";
   CARGO_BUILD_INCREMENTAL = "false";
